@@ -2,6 +2,7 @@ import { useState } from "react";
 
 import checkbox from "../assets/checkbox-checked.svg";
 import e30 from "../assets/e30.png";
+import delete_icon from "../assets/delete.png";
 
 const Start = () => {
 	const defaultValueRaw = localStorage.getItem("stored-parts");
@@ -75,25 +76,26 @@ const Start = () => {
 
 			<div className="flex justify-center mt-2 items-center flex-col">
 				{list.map((item, i) => (
-					<div className="flex select-none flex-row justify-between ml-1 bg-pink-600 mt-1 border-2 border-black font-medium text-black px-2 py-2 rounded w-[306px] self-center">
-						<p
-							onClick={() => removeItem(i)}
-							className="hover:text-red-400 cursor-pointer"
+					<div className="flex flex-row items-center">
+						<div
+							onClick={() => changePartStatus(i)}
+							className="flex select-none hover:opacity-80 cursor-pointer flex-row justify-between ml-1 bg-pink-600 mt-1 border-2 border-black font-medium text-black px-2 py-2 rounded w-[306px] self-center"
 						>
-							{item.value}
-						</p>
-						{item.done ? (
-							<img
-								src={checkbox}
-								className="w-6 hover:opacity-60 cursor-pointer"
-								onClick={() => changePartStatus(i)}
-							/>
-						) : (
-							<div
-								className="w-6 h-6 bg-pink-800 rounded hover:opacity-60 cursor-pointer"
-								onClick={() => changePartStatus(i)}
-							></div>
-						)}
+							<p>{item.value}</p>
+							{item.done ? (
+								<img
+									src={checkbox}
+									className="w-6 hover:opacity-60 cursor-pointer"
+								/>
+							) : (
+								<div className="w-6 h-6 bg-pink-800 rounded hover:opacity-60 cursor-pointer"></div>
+							)}
+						</div>
+						<img
+							src={delete_icon}
+							onClick={() => removeItem(i)}
+							className="w-11 h-11 bg-pink-600 border-2 border-black px-2.5 mt-1 py-2.5 ml-1 rounded cursor-pointer hover:opacity-80"
+						/>
 					</div>
 				))}
 			</div>

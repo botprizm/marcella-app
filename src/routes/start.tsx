@@ -29,7 +29,7 @@ const Start = () => {
 		localStorage.setItem("stored-parts", JSON.stringify(tempList));
 	};
 
-	const changePartStatus = (i) => {
+	const changePartStatus = (i: number) => {
 		const tempList = [...list];
 
 		tempList[i] = {
